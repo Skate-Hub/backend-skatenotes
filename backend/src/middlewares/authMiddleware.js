@@ -9,7 +9,7 @@ const authMiddleware = (req, res, next) => {
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET || "seusegredo");
-    req.userId = decoded.id; // o payload com id, nome, etc.
+    req.userId = decoded.id;
     next();
   } catch (err) {
     res.status(401).json({ mensagem: "Token inválido ou expirado" });
