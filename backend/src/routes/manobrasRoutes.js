@@ -1,8 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const manobraController = require("../controllers/manobraController");
+const authMiddleware = require("../middlewares/authMiddleware");
 
-router.get("/", manobraController.listarManobras);
+router.get("/", authMiddleware, manobraController.listarManobras);
 router.get("/filter/:status", manobraController.filtrarManobrasStatus);
 router.get("/manobrasObstaculo/:id", manobraController.buscarManobrasObstaculo);
 router.get("/manobra/:id", manobraController.buscarManobraController);

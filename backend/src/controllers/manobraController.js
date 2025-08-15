@@ -1,7 +1,8 @@
 const manobraService = require("../services/manobraService");
 
 const listarManobras = async (req, res) => {
-  const lista = await manobraService.listarManobras();
+  const  id = req.userId;
+  const lista = await manobraService.listarManobras(id);
   res.json(lista);
 };
 
