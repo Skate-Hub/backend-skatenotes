@@ -1,7 +1,7 @@
 const Obstaculo = require("../models/obstaculo");
 
 const listarManobras = async (id) => {
-  const obstaculos = await Obstaculo.find({ id });
+  const obstaculos = await Obstaculo.find({ user: id });
   const manobras = obstaculos.flatMap((obstaculo) => obstaculo.manobras);
   return manobras;
 };
