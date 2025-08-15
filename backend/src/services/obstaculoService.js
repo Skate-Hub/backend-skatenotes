@@ -16,6 +16,11 @@ const listarObstaculos = async (userId) => {
   return await Obstaculo.find({ user: userId });
 };
 
+// Busca obstáculo pelo ID
+const listarObstaculosPorId = async (id) => {
+  return await Obstaculo.findById(id);
+};
+
 // Atualiza nome do obstáculo (validação opcional de userId no controller)
 const atualizarObstaculoNome = async (id, novoNome) => {
   return await Obstaculo.updateOne(
@@ -32,6 +37,7 @@ const deletarObstaculo = async (id) => {
 module.exports = {
   criarObstaculo,
   listarObstaculos,
+  listarObstaculosPorId,
   atualizarObstaculoNome,
   deletarObstaculo,
 };

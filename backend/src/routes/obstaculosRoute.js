@@ -5,6 +5,7 @@ const authMiddleware = require("../middlewares/authMiddleware")
 
 
 router.get('/', authMiddleware, obstaculoController.listarObstaculos);
+router.get('/:id', obstaculoController.buscarObstaculoPorId);
 router.post('/', authMiddleware, obstaculoController.criarObstaculo);   
 router.put('/:id', obstaculoController.atualizarObstaculoNome);
 router.delete('/:id', obstaculoController.deletarObstaculo);

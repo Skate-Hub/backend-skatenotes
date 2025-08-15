@@ -29,6 +29,22 @@ const listarObstaculos = async (req, res) => {
   }
 };
 
+// Busca obstáculo pelo ID 
+const buscarObstaculoPorId = async (req, res) => {
+  const id = req.params.id;
+
+  try {
+    const obstaculo = await obstaculoService.listarObstaculosPorId(id);
+    if (!obstaculo) {
+      return res.status(404).json({ message: "Obstáculo não encontrado" });
+    }
+    res.json(obstaculo);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+
 // Atualiza nome do obstáculo, com verificação de usuário (se quiser aplicar)
 const atualizarObstaculoNome = async (req, res) => {
   const id = req.params.id;
@@ -71,4 +87,5 @@ module.exports = {
   listarObstaculos,
   atualizarObstaculoNome,
   deletarObstaculo,
+  buscarObstaculoPorId
 };
