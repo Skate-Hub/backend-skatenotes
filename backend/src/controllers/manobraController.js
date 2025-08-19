@@ -110,7 +110,7 @@ const atualizarNomeManobraController = async (req, res) => {
   }
 
   try {
-    const manobraAtualizada = await manobraService.atualizarManobrasNome(
+    const manobraAtualizada = await manobraService.atualizarNomeManobra(
       manobraId,
       novoNome.trim()
     );
