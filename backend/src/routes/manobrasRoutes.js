@@ -18,4 +18,7 @@ router.put(
   manobraController.atualizarManobrasStatusController
 );
 
+router.put("/:manobraId/nome", manobraController.atualizarNomeManobraController);
+
+
 module.exports = router;

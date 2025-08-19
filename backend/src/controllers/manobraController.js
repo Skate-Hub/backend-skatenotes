@@ -101,6 +101,25 @@ const adicionarObservacoesController = async (req, res) => {
   }
 };
 
+const atualizarNomeManobraController = async (req, res) => {
+  const manobraId = req.params.manobraId;
+  const { novoNome } = req.body;
+
+  if (!novoNome || novoNome.trim() === "") {
+    return res.status(400).json({ erro: "O novo nome não pode ser vazio" });
+  }
+
+  try {
+    const manobraAtualizada = await manobraService.atualizarManobrasNome(
+      manobraId,
+      novoNome.trim()
+    );
+    res.status(200).json(manobraAtualizada);
+  } catch (err) {
+    res.status(400).json({ erro: err.message });
+  }
+};
+
 module.exports = {
   listarManobras,
   adicionarManobra,
@@ -109,5 +128,6 @@ module.exports = {
   buscarManobrasObstaculo,
   adicionarObservacoesController,
   buscarManobraController,
-  atualizarManobrasStatusController
+  atualizarManobrasStatusController,
+  atualizarNomeManobraController
 };
