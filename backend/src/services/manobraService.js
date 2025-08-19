@@ -68,12 +68,16 @@ const atualizarNomeManobra = async (manobraId, novoNome) => {
     const obstaculo = await Obstaculo.findOne({ "manobras._id": manobraId });
 
     if (!obstaculo) {
-      throw new Error(`Manobra com ID ${manobraId} não encontrada em nenhum obstáculo.`);
+      throw new Error(
+        `Manobra com ID ${manobraId} não encontrada em nenhum obstáculo.`
+      );
     }
 
     const manobra = obstaculo.manobras.id(manobraId);
     if (!manobra) {
-      throw new Error(`Manobra com ID ${manobraId} não encontrada dentro do obstáculo.`);
+      throw new Error(
+        `Manobra com ID ${manobraId} não encontrada dentro do obstáculo.`
+      );
     }
 
     manobra.nome = novoNome;
@@ -85,7 +89,6 @@ const atualizarNomeManobra = async (manobraId, novoNome) => {
     throw err;
   }
 };
-
 
 const atualizarManobrasStatus = async (novoStatus, manobraId) => {
   try {
@@ -109,9 +112,10 @@ const atualizarManobrasStatus = async (novoStatus, manobraId) => {
 
     manobra.status = novoStatus;
 
+    obstaculo.markModified("manobras"); 
     await obstaculo.save();
 
-    return obstaculo;
+    return manobra;
   } catch (err) {
     console.error("Erro ao atualizar status da manobra:", err);
     throw err;
