@@ -1,7 +1,7 @@
 const manobraService = require("../services/manobraService");
 
 const listarManobras = async (req, res) => {
-  const  id = req.userId;
+  const id = req.userId;
   const lista = await manobraService.listarManobras(id);
   res.json(lista);
 };
@@ -103,7 +103,7 @@ const adicionarObservacoesController = async (req, res) => {
 
 const atualizarNomeManobraController = async (req, res) => {
   const manobraId = req.params.manobraId;
-  const { novoNome } = req.body;
+  const novoNome = req.body.novoNome;
 
   if (!novoNome || novoNome.trim() === "") {
     return res.status(400).json({ erro: "O novo nome não pode ser vazio" });
@@ -129,5 +129,5 @@ module.exports = {
   adicionarObservacoesController,
   buscarManobraController,
   atualizarManobrasStatusController,
-  atualizarNomeManobraController
+  atualizarNomeManobraController,
 };
