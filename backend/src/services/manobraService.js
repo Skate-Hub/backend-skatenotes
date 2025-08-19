@@ -91,7 +91,6 @@ const atualizarNomeManobra = async (manobraId, novoNome) => {
 };
 
 const atualizarManobrasStatus = async (novoStatus, manobraId) => {
-  console.log("no service; ", novoStatus)
   try {
     const obstaculo = await Obstaculo.findOne({ "manobras._id": manobraId });
 

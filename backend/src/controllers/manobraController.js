@@ -43,7 +43,6 @@ const filtrarManobrasStatus = async (req, res) => {
 const atualizarManobrasStatusController = async (req, res) => {
   const manobraId = req.params.manobraId;
   const novoStatus = req.body.novoStatus;
-  console.log("no controller: ", novoStatus);
 
   try {
     const response = await manobraService.atualizarManobrasStatus(
