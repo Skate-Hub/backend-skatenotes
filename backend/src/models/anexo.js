@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const anexoSchema = new mongoose.Schema(
   {
     url: { type: String, required: true },
-    serverpath: {type: String, required: true},
+    serverPath: {type: String, required: true},
     tipo: { type: String, enum: ["imagem", "video"], required: true },
     nomeOriginal: { type: String, required: true },
     tamanho: { type: Number, required: true },
