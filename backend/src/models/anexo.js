@@ -2,18 +2,13 @@ const mongoose = require("mongoose");
 
 const anexoSchema = new mongoose.Schema(
   {
-
-    //firebase storage
+    // Caminho local no servidor
     url: {
-      type: String,
+      type: String, // ex: "uploads/nome_arquivo.jpg"
       required: true,
     },
-    caminhoFirebase: {
-        type: String,
-        required: true
-    },
 
-     //metadados do arquivo
+    // metadados do arquivo
     tipo: {
       type: String,
       enum: ["imagem", "video"],
@@ -28,18 +23,17 @@ const anexoSchema = new mongoose.Schema(
       required: true,
     },
     formato: {
-      type: String,
+      type: String, // ex: "image/jpeg", "video/mp4"
     },
     metadata: {
-      largura: { type: Number },
-      altura: { type: Number },
-      duracao: { type: Number },
+      largura: { type: Number }, // somente para imagens
+      altura: { type: Number },  // somente para imagens
+      duracao: { type: Number }, // somente para vídeos
     },
-    
   },
   {
     timestamps: true,
   }
 );
 
-module.exports = anexoSchema;
+module.exports = mongoose.model("Anexo", anexoSchema);

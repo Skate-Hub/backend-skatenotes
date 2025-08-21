@@ -1,20 +1,15 @@
 const Obstaculo = require("../models/obstaculo");
 
-const adicionarAnexoService = async (obstaculoId, manobraId, novoAnexo) => {
+const adicionarAnexoService = async (manobraId, novoAnexo) => {
   try {
     const obstaculo = await Obstaculo.findOneAndUpdate(
-      {
-        _id: obstaculoId,
-        "manobras._id": manobraId,
-      },
-      {
-        $push: { "manobras.$.anexos": novoAnexo },
-      },
+      { "manobras._id": manobraId },
+      { $push: { "manobras.$.anexos": novoAnexo } },
       { new: true }
     );
 
     if (!obstaculo) {
-      throw new Error("Obstáculo ou manobra não encontrado");
+      throw new Error("Manobra não encontrada");
     }
 
     return obstaculo;
@@ -24,22 +19,16 @@ const adicionarAnexoService = async (obstaculoId, manobraId, novoAnexo) => {
   }
 };
 
-const removerAnexoService = async (obstaculoId, manobraId, anexoId) => {
-
+const removerAnexoService = async (manobraId, anexoId) => {
   try {
     const obstaculo = await Obstaculo.findOneAndUpdate(
-      {
-        _id: obstaculoId,
-        "manobras._id": manobraId,
-      },
-      {
-        $pull: { "manobras.$.anexos": { _id: anexoId } },
-      },
+      { "manobras._id": manobraId },
+      { $pull: { "manobras.$.anexos": { _id: anexoId } } },
       { new: true }
     );
 
     if (!obstaculo) {
-      throw new Error("Obstáculo, manobra ou anexo não encontrado");
+      throw new Error("Manobra ou anexo não encontrado");
     }
 
     return obstaculo;
