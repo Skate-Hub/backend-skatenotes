@@ -33,6 +33,8 @@ const adicionarAnexoService = async (manobraId, novoAnexo) => {
       throw new Error("Manobra não encontrada");
     }
 
+    console.log(obstaculo)
+
     return obstaculo;
   } catch (error) {
     console.error("Erro no service:", error);
@@ -57,6 +59,8 @@ const removerAnexoService = async (manobraId, anexoId) => {
     throw error;
   }
 };
+
+
 
 module.exports = {
   adicionarAnexoService,
