@@ -1,7 +1,20 @@
 const {
   adicionarAnexoService,
   removerAnexoService,
+  buscarAnexosService
 } = require("../services/anexoService");
+
+
+const buscarAnexosController = async (req, res) => {
+  const { manobraId } = req.params;
+
+  try {
+    const anexos = await buscarAnexosService(manobraId);
+    res.status(200).json(anexos);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
 
 const adicionarAnexoController = async (req, res) => {
   const { manobraId } = req.params;
@@ -45,4 +58,5 @@ const removerAnexoController = async (req, res) => {
 module.exports = {
   adicionarAnexoController,
   removerAnexoController,
+  buscarAnexosController
 };

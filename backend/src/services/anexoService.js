@@ -1,5 +1,26 @@
 const Obstaculo = require("../models/obstaculo");
 
+const buscarAnexosService = async (manobraId) => {
+  try {
+    const obstaculo = await Obstaculo.findOne(
+      { "manobras._id": manobraId },
+      { "manobras.$": 1 }
+    );
+
+    if (!obstaculo || !obstaculo.manobras.length) {
+      throw new Error("Manobra não encontrada");
+    }
+
+    const anexos = obstaculo.manobras[0].anexos || [];
+
+    // retorna só os serverPath de cada anexo
+    return anexos.map((anexo) => anexo.serverPath);
+  } catch (error) {
+    console.error("Erro no service:", error);
+    throw error;
+  }
+};
+
 const adicionarAnexoService = async (manobraId, novoAnexo) => {
   try {
     const obstaculo = await Obstaculo.findOneAndUpdate(
@@ -40,4 +61,5 @@ const removerAnexoService = async (manobraId, anexoId) => {
 module.exports = {
   adicionarAnexoService,
   removerAnexoService,
+  buscarAnexosService,
 };
