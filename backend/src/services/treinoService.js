@@ -1,4 +1,4 @@
-const Treino = require("../models/Treino");
+const Treino = require("../models/treino");
 
 // Criar um novo treino
 async function criarTreino(data) {
