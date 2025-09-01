@@ -13,7 +13,7 @@ async function listarTreinos(req, res) {
   try {
     const userId = req.userId;
     const treinos = await treinoService.listarTreinos(userId);
-    res.json(treinos);
+    return res.json(treinos);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
