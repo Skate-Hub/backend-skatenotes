@@ -13,7 +13,7 @@ async function criarTreino(data) {
 // Listar treinos de um usuário
 async function listarTreinos(userId) {
   try {
-    return await Treino.find({ userId })
+    return await Treino.findOne({ userId })
       .populate("aprender.manobras")
       .populate("aprimorar.manobras")
       .populate("naBase.manobras");
