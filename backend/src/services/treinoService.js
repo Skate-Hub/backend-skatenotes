@@ -13,10 +13,7 @@ async function criarTreino(data) {
 // Listar treinos de um usuário
 async function listarTreinos(userId) {
   try {
-    return await Treino.findOne({ userId })
-      .populate("aprender.manobras")
-      .populate("aprimorar.manobras")
-      .populate("naBase.manobras");
+    return await Treino.findOne({ userId });
   } catch (error) {
     throw new Error(`Erro ao listar treinos: ${error.message}`);
   }
@@ -25,10 +22,7 @@ async function listarTreinos(userId) {
 // Buscar treino por ID
 async function buscarTreinoPorId(id) {
   try {
-    return await Treino.findById(id)
-      .populate("aprender.manobras")
-      .populate("aprimorar.manobras")
-      .populate("naBase.manobras");
+    return await Treino.findOne({ id });
   } catch (error) {
     throw new Error(`Erro ao buscar treino: ${error.message}`);
   }
